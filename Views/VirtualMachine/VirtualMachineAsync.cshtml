@@ -1,0 +1,21 @@
+﻿@model ListSubscriptions.Models.ListSubscriptions
+
+@{
+    ViewBag.Title = "VirtualMachineAsync";
+}
+
+<br />
+<br />
+
+
+@for (int i = 0; @ListSubscriptions.Models.ListSubscriptions.vm[i] != null; i++)
+{
+    <ul id="menu">
+
+        <li>
+            <b>@ListSubscriptions.Models.ListSubscriptions.vm[i]</b>
+            
+        </li>
+
+    </ul>
+}

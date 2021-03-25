@@ -1,0 +1,21 @@
+﻿@model ListSubscriptions.Models.ListSubscriptions
+
+@{
+    ViewBag.Title = "ListSubscriptionsAsync";
+}
+
+<br />
+<br/>
+
+
+   @for (int i= 0; @ListSubscriptions.Models.ListSubscriptions.list[i] != null; i++ )
+    {
+        <ul id="menu">
+
+            <li>
+                <b>@ListSubscriptions.Models.ListSubscriptions.list[i]</b>
+            </li>
+           
+        </ul>
+    }
+  

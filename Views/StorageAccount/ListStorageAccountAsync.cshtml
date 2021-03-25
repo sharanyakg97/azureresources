@@ -1,0 +1,21 @@
+﻿@model ListSubscriptions.Models.ListSubscriptions
+
+@{
+    ViewBag.Title = "ListStorageAccountAsync";
+}
+
+<br />
+<br />
+
+
+@for (int i = 0; @ListSubscriptions.Models.ListSubscriptions.stgacct[i] != null; i++)
+{
+    <ul id="menu">
+
+        <li>
+            <b>@ListSubscriptions.Models.ListSubscriptions.stgacct[i]</b>
+        </li>
+
+    </ul>
+}
+
