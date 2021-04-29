@@ -23,7 +23,7 @@ namespace ListSubscriptions.Controllers
         {
            // var credentials = SdkContext.AzureCredentialsFactory.FromFile(Environment.GetEnvironmentVariable("AZURE_AUTH_LOCATION"));
            // AzureEnvironment env = new AzureEnvironment();
-            //var credentias = SdkContext.AzureCredentialsFactory.FromServicePrincipal("bc472b9f-bfd3-4a23-b99a-fbc1e1d35a24", "OaOM_qlh7V17reE_6w0tn_JFr2u82z_6gq","3882b70d-a91e-468c-9928-820358bfbd73",env);
+            
             DefaultAzureCredential credential = new DefaultAzureCredential();
             await ListSubscriptions.Models.ListSubscriptions.GetSubscriptions(credential);
            
