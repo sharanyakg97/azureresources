@@ -1,44 +1,32 @@
+# ASP.NET Core (.NET Framework)
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 trigger:
 - master
-
 pool:
   vmImage: 'windows-latest'
-
-variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release'
 steps:
-
-- task: UseDotNet@2
-  displayName: 'Use .NET Core sdk 5.x'
-  inputs:
-    version: 5.x
-
-
-
-- task: jungeriusit.jungit-choco.jungit-chocoinstaller.ChocoInstallPackage@1
-  displayName: 'Install visualstudio2019buildtools '
-  inputs:
-    packageId: 'visualstudio2019buildtools '
-    extraOptions: '--package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"'
-
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet restore'
   inputs:
-    command: restore
+    command: 'restore'
     projects: '**/*.csproj'
-    vstsFeed: 'fff3d87c-fad3-4fdd-90f9-f8d6a5893a23'
-    verbosityRestore: Minimal
-
-- powershell: '& "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\msbuild.exe" --% "$(Build.SourcesDirectory)\src\SimpleMessageBus.sln" /nologo /nr:false /p:platform="$(BuildPlatform)" /p:configuration="$(BuildConfiguration)" /p:VisualStudioVersion="16.0"'
-  displayName: 'PowerShell Script'
-
-- task: VSBuild@1
-  displayName: 'Build solution **\SimpleMessageBus.sln'
+    feedsToUse: 'select'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)'
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '**\SimpleMessageBus.sln'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
-    maximumCpuCount: true
-  enabled: false
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '-c Release'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '-o $(Build.ArtifactStagingDirectory)'
+    workingDirectory: '$(System.DefaultWorkingDirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
