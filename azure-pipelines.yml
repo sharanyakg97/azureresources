@@ -20,6 +20,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '4.x'
+    includePreviewVersions: true
   enabled: true
 - task: DotNetCoreCLI@2
   inputs:
