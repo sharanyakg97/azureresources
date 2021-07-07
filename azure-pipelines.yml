@@ -16,11 +16,10 @@ variables:
 
 steps:
 - task: UseDotNet@2
-  displayName: 'Install Dotnet core 4.3'
+  displayName: 'Install Dotnet core 2.x'
   inputs:
     packageType: 'sdk'
-    version: '4.7.2'
-    includePreviewVersions: true
+    version: '2.x'
   enabled: true
 - task: DotNetCoreCLI@2
   inputs:
