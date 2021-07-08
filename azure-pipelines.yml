@@ -15,11 +15,13 @@ steps:
     performMultiLevelLookup: true
     includePreviewVersions: true
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.csproj'
+    projects: '**/*.csproj'
     feedsToUse: 'select'
+    restoreDirectory: '$(System.DefaultWorkingDirectory)'
+  enabled: true
 
 - task: DotNetCoreCLI@2
   inputs:
