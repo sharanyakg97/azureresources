@@ -11,7 +11,7 @@ steps:
 - task: UseDotNet@2
   displayName: 'Install .NET SDK'
   inputs:
-    version: 4.7.2
+    version: 5.0.x
     performMultiLevelLookup: true
     includePreviewVersions: true
 
