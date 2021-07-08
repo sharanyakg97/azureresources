@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ListSubscriptions</RootNamespace>
     <AssemblyName>ListSubscriptions</AssemblyName>
-    <TargetFramework>netcoreapp4.7.2</TargetFramework>
+    <TargetFramework>netcoreapp5</TargetFramework>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
